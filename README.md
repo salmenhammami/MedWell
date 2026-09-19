@@ -1,45 +1,49 @@
 # MedWell
 
-A modern healthcare and wellness platform designed to simplify medical appointments, patient record management, and daily health tracking.
+A small clinic back-office: doctors, patients, appointments and consultations.
 
-## Overview
+The API is plain PHP — no framework. I wrote the routing, the controllers and the PDO
+models by hand, which turned out to be the most useful part of the project. You don't
+really appreciate what Django or Laravel do for you until you've done it yourself.
 
-**MedWell** is built to improve the digital healthcare experience for both patients and providers. It offers a clean, centralized system to schedule medical consultations, manage health profiles, track vitals, and maintain organized treatment records securely.
+## What it does
 
-## Key Features
+- Keep records for doctors, each attached to a speciality
+- Manage the patient register
+- Book appointments between a patient and a doctor
+- Record the consultation that follows
+- Register and log in, with hashed passwords and a session per user
 
-* **Appointment Scheduling:** Book, reschedule, and manage doctor appointments with real-time status updates.
-* **Patient & Medical Records:** Centralized dashboard for storing patient history, prescriptions, and health metrics.
-* **User & Role Management:** Secure authorization tiers for patients, healthcare providers, and administrative staff.
-* **Health & Vitals Tracking:** Interactive interface for logging and viewing health trends over time.
+**Built with** PHP 8, PDO, React 19, Vite, Bootstrap and MySQL.
 
-## Tech Stack
+## Running it
 
-* **Backend:** PHP (RESTful API Architecture)
-* **Frontend:** React (Vite)
-* **Database:** MySQL
-* **Authentication:** Session-based / Role-Based Access Control (RBAC)
+You'll need XAMPP (or WAMP) and Node 18+.
 
-## Getting Started
-
-### Prerequisites
-* PHP 8.0+
-* MySQL / XAMPP / WAMP
-* Node.js & npm
-
-### Quick Setup
+The front end calls `http://localhost/Clinique/Backend`, so the project has to sit in
+your web root under the name `Clinique`:
 
 ```bash
-# Clone the repository
-git clone https://github.com/HammamiSalmen/MedWell.git
-cd MedWell
+git clone https://github.com/salmenhammami/MedWell.git
+# copy it into C:\xampp\htdocs\Clinique  (or /var/www/html/Clinique)
+```
 
-# Backend Setup
-cd backend
-# Run locally using PHP built-in server (or configure via XAMPP/Apache)
-php -S localhost:8000
+Create a MySQL database called `clinique` and import `database/schema.sql`. Then
+start Apache and MySQL, and run the front end:
 
-# Frontend Setup (in a new terminal)
-cd ../frontend
-npm install
-npm run dev
+```bash
+cd Frontend
+npm install && npm run dev
+```
+
+If you'd rather serve the API somewhere else, change `API_URL` in `Frontend/src/api.js`.
+
+## Honest notes
+
+A coursework project, not something to deploy. The database credentials are hard-coded,
+CORS is wide open alongside cookie sessions, and roles are stored on login but not yet
+checked on every endpoint.
+
+---
+
+**Salmen Hammami** · [GitHub](https://github.com/salmenhammami) · [LinkedIn](https://www.linkedin.com/in/salmenhammami/)
